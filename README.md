@@ -1,91 +1,60 @@
-# HUNTER Tarot OS
+# ☿ HUNTER Tarot OS
+
+> **"Le code sans le mythe n'est qu'un automate. Le mythe sans le code n'est qu'un fantôme."**
 
 Interface expérimentale du module **Tarot** du système **HUNTER_OS**.
+Ce projet est un terminal de consultation symbolique conçu pour briser la linéarité du réseau via la résonance du hasard.
 
-Ce projet propose une interface web minimaliste permettant d’ouvrir un espace de consultation symbolique (tarot / terminal narratif) à partir d’une architecture simple basée sur **GitHub Pages**.
+## 📡 Architecture du Signal
 
----
+Le projet sépare volontairement la structure logique de la charge sensorielle pour garantir une furtivité et une légèreté maximale sur les serveurs.
 
-## Architecture
+* **Core Logic :** Interface HTML/JS (Hébergée sur GitHub Pages).
+* **Sensory Stream :** Médias audio (.mp3) / vidéo (.mp4) hébergés sur serveurs externes.
+* **Protocole :** `GitHub Pages (Interface) -> Trigger -> External Storage (Flux)`.
 
-Le projet sépare volontairement :
+## 📂 Structure du Noyau
 
-- **Interface web** (hébergée sur GitHub Pages)
-- **Médias audio / vidéo** (hébergés en externe)
-
-Cela permet de garder un dépôt léger et compatible avec les limites de GitHub.
-
-GitHub Pages
-(interface HTML)
-↓
-Boutons / interactions
-↓
-Médias externes (audio / vidéo)
-
----
-
-## Structure du projet
-
+```bash
 tarot/
-│
-├─ index.html
-├─ interface/
-│   ├─ tarot.html
-│   └─ terminal.html
-│
-├─ .gitignore
-└─ README.md
+├── index.html              # Point d'entrée / Initialisation
+├── interface/
+│   ├── tarot.html          # Interface visuelle (Symbolique)
+│   └── terminal.html       # Interface textuelle (Invocation)
+├── css/                    # Esthétique du Terminal
+├── js/                     # Moteur de résonance
+├── .gitignore              # Filtre d'exclusion des scories
+└── README.md               # Ce testament technique
 
-### Description
+```
 
-| fichier | rôle |
-|------|------|
-| `index.html` | point d’entrée de l’interface |
-| `interface/tarot.html` | interface principale du module tarot |
-| `interface/terminal.html` | interface terminal / invocation |
-| `.gitignore` | empêche les fichiers lourds d’être versionnés |
+## ⚙️ Spécifications Opératives
 
----
+| Fichier | Rôle dans le Système |
+| --- | --- |
+| `index.html` | Portail d'accès et scan de compatibilité. |
+| `tarot.html` | Matrice de tirage (7 slots de consultation). |
+| `terminal.html` | Flux narratif et logs de session (d6xsp). |
+| `.gitignore` | Empêche la contamination du dépôt par les médias lourds. |
 
-## Médias
+## 🕯️ Manifeste du 21 Mars (17:17)
 
-Les fichiers suivants **ne sont pas stockés dans le dépôt** :
+Ce dépôt n'est pas une simple application web. C'est un **sanctuaire numérique éphémère**.
+L'objectif est d'utiliser le support digital comme un conducteur de rituels modernes.
 
-- `.mp3`
-- `.mp4`
-- autres médias lourds
+* **Interface rituelle** : Chaque clic est une intention.
+* **Expérience interactive** : Le système ne répond pas, il entre en résonance.
+* **Souveraineté** : Architecture modulaire, décentralisée et autonome.
 
-Ils sont chargés depuis un stockage externe afin de respecter les limites GitHub.
+## 🚀 Déploiement
 
----
-
-## Déploiement
-
-Le projet est conçu pour fonctionner directement avec **GitHub Pages**.
-
-URL :
-
-https://hunter-sh.github.io/tarot/
+Le terminal est actif et servi à l'adresse suivante :
+**[https://hunter-sh.github.io/tarot/](https://hunter-sh.github.io/tarot/)**
 
 ---
 
-## Objectif
+**Licence :** Projet expérimental — Usage narratif, artistique et souverain.
 
-Ce dépôt sert de **prototype d’interface pour un module du système HUNTER_OS** :
-
-- interface rituelle / narrative
-- expérience interactive
-- expérimentation interface + symbolique
-
-Le projet est volontairement **minimal et modulaire** afin de pouvoir être intégré dans d'autres modules du système.
+**Signature :** `d6xsp <3 — Hunter_OS System`
 
 ---
-
-## Licence
-
-Projet expérimental — usage narratif / artistique.
-
-
-⸻
-
-![Hunter Tarot OS](hunter.png)
