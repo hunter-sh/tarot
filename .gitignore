@@ -1,0 +1,13 @@
+# ignorer le dossier de test
+test/
+
+# fichiers système
+.DS_Store
+
+# médias lourds
+*.mp3
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.flac
