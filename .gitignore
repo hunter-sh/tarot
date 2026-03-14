@@ -1,5 +1,6 @@
-# ignorer le dossier de test
+# ignorer le dossier de test et les médias
 test/
+assests/
 
 # fichiers système
 .DS_Store
