@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hunter OS · Terminal</title>
+    <style>
+      :root {
+        --bg: #070809;
+        --bg-soft: #0d1013;
+        --panel: rgba(15, 19, 24, 0.72);
+        --panel-strong: rgba(18, 23, 29, 0.92);
+        --card: #0e1115;
+        --border: rgba(215, 180, 106, 0.22);
+        --border-strong: rgba(215, 180, 106, 0.48);
+        --gold: #d7b46a;
+        --gold-soft: #c79e49;
+        --ink: #ece6d8;
+        --muted: #a9a291;
+        --muted-2: #7f7a6f;
+        --ok: #83c48a;
+        --danger: #d26b6b;
+        --cyan: #8dd3ff;
+        --violet: #8f7cff;
+        --shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+        --radius: 22px;
+        --radius-sm: 14px;
+        --max: 1240px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+      }
+
+      body {
+        color: var(--ink);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          sans-serif;
+        background:
+          radial-gradient(
+            1000px 600px at 80% -10%,
+            rgba(143, 124, 255, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            800px 500px at 10% 0%,
+            rgba(141, 211, 255, 0.08),
+            transparent 55%
+          ),
+          radial-gradient(
+            1200px 700px at 50% -10%,
+            rgba(215, 180, 106, 0.08),
+            transparent 60%
+          ),
+          linear-gradient(180deg, #090b0d 0%, #060709 100%);
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.06;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.22) 1px, transparent 1px);
+        background-size: 28px 28px;
+        mask-image: radial-gradient(
+          circle at center,
+          black 35%,
+          transparent 90%
+        );
+      }
+
+      header {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 40px auto 10px;
+        padding: 0;
+        display: flex;
+        align-items: flex-end;
+        gap: 20px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .title {
+        letter-spacing: 0.04em;
+        min-width: 0;
+      }
+
+      .title h1 {
+        margin: 0;
+        font-weight: 700;
+        font-size: clamp(26px, 4vw, 34px);
+        color: var(--ink);
+        line-height: 1.08;
+      }
+
+      .title p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        opacity: 0.95;
+        line-height: 1.55;
+      }
+
+      .actions {
+        margin-left: auto;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        appearance: none;
+        background: transparent;
+        border: 1px solid var(--border-strong);
+        color: var(--ink);
+        padding: 12px 16px;
+        border-radius: 14px;
+        cursor: pointer;
+        letter-spacing: 0.01em;
+        font-weight: 600;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          border-color 0.2s ease,
+          box-shadow 0.2s ease,
+          color 0.2s ease;
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .actions button {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.01)
+        );
+        box-shadow: inset 0 0 18px rgba(215, 180, 106, 0.04);
+      }
+
+      .actions button:hover {
+        border-color: rgba(215, 180, 106, 0.58);
+        color: var(--gold);
+        background: linear-gradient(
+          180deg,
+          rgba(215, 180, 106, 0.12),
+          rgba(215, 180, 106, 0.05)
+        );
+      }
+
+      .grid {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 18px auto 72px;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 18px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 260px;
+        padding: 16px 14px 14px;
+        border-radius: 22px;
+        border: 1px solid rgba(215, 180, 106, 0.34);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.015)
+          ),
+          linear-gradient(
+            180deg,
+            rgba(14, 18, 23, 0.96),
+            rgba(10, 13, 17, 0.96)
+          );
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.22s ease,
+          border-color 0.22s ease,
+          background 0.22s ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            circle at 20% 10%,
+            rgba(215, 180, 106, 0.1),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(141, 211, 255, 0.07),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 50% 100%,
+            rgba(143, 124, 255, 0.07),
+            transparent 38%
+          );
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.52);
+        border-color: rgba(215, 180, 106, 0.48);
+      }
+
+      .frame {
+        position: absolute;
+        inset: 8px;
+        border: 1px solid rgba(215, 180, 106, 0.22);
+        border-radius: 16px;
+        pointer-events: none;
+      }
+
+      .icon {
+        width: 72px;
+        height: 72px;
+        margin-top: 8px;
+        color: var(--gold);
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        position: relative;
+        z-index: 1;
+      }
+
+      .label {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        color: var(--gold);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        margin-top: 8px;
+      }
+
+      .cmd {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        color: #bca97d;
+        font-family:
+          "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+          Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 12px;
+        line-height: 1.45;
+        opacity: 0.95;
+        background: rgba(215, 180, 106, 0.06);
+        border: 1px solid rgba(215, 180, 106, 0.12);
+        padding: 8px 10px;
+        border-radius: 10px;
+        text-align: center;
+        word-break: break-word;
+      }
+
+      .invoke {
+        width: 100%;
+        border-color: rgba(215, 180, 106, 0.3);
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.02);
+        position: relative;
+        z-index: 1;
+      }
+
+      .invoke:hover {
+        border-color: rgba(215, 180, 106, 0.58);
+        color: var(--gold);
+        background: linear-gradient(
+          180deg,
+          rgba(215, 180, 106, 0.16),
+          rgba(215, 180, 106, 0.08)
+        );
+        box-shadow: inset 0 0 18px rgba(215, 180, 106, 0.08);
+      }
+
+      .deck {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 6px;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(215, 180, 106, 0.05),
+            transparent 35%
+          ),
+          rgba(2, 3, 4, 0.72);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 30;
+        padding: 18px;
+      }
+
+      .modal.show {
+        display: flex;
+      }
+
+      .panel {
+        width: min(860px, 100%);
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.015)
+          ),
+          linear-gradient(
+            180deg,
+            rgba(14, 18, 23, 0.97),
+            rgba(10, 13, 17, 0.98)
+          );
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.62);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .panel header {
+        width: 100%;
+        margin: 0;
+        padding: 16px 18px;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+          ),
+          rgba(255, 255, 255, 0.015);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        align-items: center;
+      }
+
+      .panel header h3 {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.45;
+        color: var(--gold);
+        letter-spacing: 0.04em;
+        font-family:
+          "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+          monospace;
+        word-break: break-word;
+      }
+
+      .term {
+        padding: 18px;
+        height: 360px;
+        overflow: auto;
+        font-family:
+          "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+          Consolas, "Liberation Mono", monospace;
+        font-size: 13px;
+        line-height: 1.75;
+        color: #d4d8df;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(255, 255, 255, 0)
+          ),
+          linear-gradient(180deg, #0a0d10, #090b0f);
+        position: relative;
+      }
+
+      .term::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(143, 124, 255, 0.05),
+            transparent 26%
+          ),
+          radial-gradient(
+            circle at top left,
+            rgba(141, 211, 255, 0.04),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at center top,
+            rgba(215, 180, 106, 0.04),
+            transparent 34%
+          );
+      }
+
+      .term > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .term .prompt {
+        color: var(--gold);
+      }
+
+      .tok-prompt {
+        color: #dcdcaa;
+      }
+
+      .tok-heading {
+        color: var(--cyan);
+        font-weight: 700;
+      }
+
+      .tok-strong {
+        color: #ccb6ff;
+        font-weight: 700;
+      }
+
+      .tok-em {
+        color: #9cdcfe;
+        font-style: italic;
+      }
+
+      .tok-code {
+        color: #f0bb8b;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 0 0.32em;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .tok-quote {
+        color: #88bf8c;
+        display: block;
+        padding-left: 0.9em;
+        border-left: 3px solid rgba(131, 196, 138, 0.45);
+      }
+
+      .tok-hr {
+        display: block;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 0.7em 0;
+      }
+
+      .tok-bullet::before {
+        content: "• ";
+        color: #d7ba7d;
+      }
+
+      .tok-number {
+        color: #b5cea8;
+      }
+
+      .tok-link {
+        color: #7ecfff;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .term code {
+        font-family:
+          "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+          monospace;
+      }
+
+      .panel footer {
+        display: flex;
+        gap: 10px;
+        padding: 14px 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(255, 255, 255, 0.01)
+          ),
+          rgba(255, 255, 255, 0.01);
+        flex-wrap: wrap;
+      }
+
+      .panel footer button {
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .panel footer button:hover {
+        border-color: rgba(215, 180, 106, 0.58);
+        color: var(--gold);
+        background: linear-gradient(
+          180deg,
+          rgba(215, 180, 106, 0.14),
+          rgba(215, 180, 106, 0.06)
+        );
+      }
+
+      .small {
+        font-size: 12px;
+        opacity: 0.9;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid rgba(215, 180, 106, 0.34);
+        color: var(--gold);
+        padding: 4px 10px;
+        border-radius: 999px;
+        margin-left: 8px;
+        font-size: 12px;
+        background: rgba(215, 180, 106, 0.06);
+        vertical-align: middle;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .olive {
+        animation: swing 2s ease-in-out infinite;
+        transform-origin: center;
+      }
+
+      .glow {
+        opacity: 0.4;
+        stroke: gold;
+        animation: pulse 3s ease-in-out infinite;
+      }
+
+      .moon {
+        animation: float 3.5s ease-in-out infinite;
+        transform-origin: center;
+      }
+
+      .icon.moon {
+        overflow: visible;
+      }
+
+      .moon .crescent {
+        stroke-dasharray: 240;
+        stroke-dashoffset: 240;
+        animation: sheen 5s linear infinite;
+      }
+
+      .moon .orbit {
+        transform-box: view-box;
+        transform-origin: 50% 50%;
+        animation: orbit 10s linear infinite;
+        will-change: transform;
+      }
+
+      .moon .star {
+        fill: currentColor;
+        stroke: currentColor;
+        stroke-width: 0.6;
+        filter: drop-shadow(0 0 4px currentColor);
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: twinkleBig 1.2s ease-in-out infinite alternate;
+        opacity: 0.9;
+      }
+
+      .moon .s2 {
+        animation-delay: 0.2s;
+      }
+
+      .moon .s3 {
+        animation-delay: 0.4s;
+      }
+
+      .moon .s4 {
+        animation-delay: 0.6s;
+      }
+
+      .moon .crescent-base {
+        stroke: currentColor;
+        stroke-width: 2;
+        fill: none;
+      }
+
+      .moon .crescent-sheen {
+        stroke: currentColor;
+        stroke-width: 2;
+        fill: none;
+        opacity: 0.55;
+        stroke-linecap: round;
+        stroke-dasharray: 200;
+        stroke-dashoffset: 200;
+        animation: sheen 5s linear infinite;
+      }
+
+      @keyframes sheen {
+        0% {
+          stroke-dashoffset: 200;
+        }
+        50% {
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: -200;
+        }
+      }
+
+      @keyframes orbit {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes twinkleBig {
+        0% {
+          transform: scale(0.85);
+          opacity: 0.6;
+          filter: drop-shadow(0 0 2px currentColor);
+        }
+        100% {
+          transform: scale(1.45);
+          opacity: 1;
+          filter: drop-shadow(0 0 8px currentColor);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-6px) rotate(1.5deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+
+      @keyframes swing {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(5deg);
+        }
+        50% {
+          transform: rotate(0deg);
+        }
+        75% {
+          transform: rotate(-5deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.2;
+          r: 16;
+        }
+        50% {
+          opacity: 0.6;
+          r: 20;
+        }
+        100% {
+          opacity: 0.2;
+          r: 16;
+        }
+      }
+
+      @media (max-width: 760px) {
+        header,
+        .grid {
+          width: min(var(--max), calc(100% - 20px));
+        }
+
+        .actions {
+          width: 100%;
+          margin-left: 0;
+        }
+
+        .actions button {
+          flex: 1 1 180px;
+        }
+
+        .panel {
+          width: min(100%, 100%);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .card {
+          min-height: 240px;
+        }
+
+        .icon {
+          width: 64px;
+          height: 64px;
+        }
+
+        .panel header h3 {
+          font-size: 13px;
+        }
+
+        .term {
+          height: 320px;
+          padding: 16px;
+          font-size: 12.5px;
+        }
+
+        .panel footer {
+          flex-direction: column;
+        }
+
+        .panel footer button,
+        .actions button {
+          width: 100%;
+        }
+
+        .badge {
+          display: inline-flex;
+          margin-left: 0;
+          margin-top: 8px;
+        }
+
+        .title h1 {
+          line-height: 1.18;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="title">
+          <h1>
+            $HUNTER-OS / Terminal
+            <span class="badge">Narratif, interactif & jouable</span>
+          </h1>
+          <p>
+            · Fragment invocables · Terminal intégré · Clique un fragment →
+            “Invoque en attendant ta consultation"
+          </p>
+        </div>
+        <div class="actions">
+          <button id="btnDraw">Invocation Fragment aléatoire</button>
+          <button
+            onclick="window.open('assets/portrait_hunter.mp4', '_blank')"
+            id="btnTrilogy"
+          >
+            Invocation de la trilogie (.MP4)
+          </button>
+          <button
+            onclick="window.open('assets/trailer/index.html', '_blank')"
+            id="btnDownloadCommand"
+          >
+            Invocation du trailer (.MP4)
+          </button>
+          <button id="btnAbout">À propos</button>
+        </div>
+      </header>
+
+      <main class="grid" id="grid"></main>
+    </div>
+
+    <div class="modal" id="modal">
+      <div class="panel">
+        <header><h3 id="mh"></h3></header>
+        <div class="term" id="term"></div>
+        <footer>
+          <button id="copyCmd">Télécharge la version Audio (MP3)</button>
+          <button id="saveTxt">Ouvrir le fichier</button>
+          <button id="close" style="background: var(--gold); color: #111">
+            Fermer
+          </button>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      // --------- Deck definition (12 cartes) ---------
+      const DECK = [
+        {
+          title: "CONSULTATION",
+          cmd: "Hunter Open --Fiche_à_télécharger",
+          icon: "moon",
+          fragment: `Contenus et consultation de la carte`,
+          audio: "assets/consultation.mp3",
+        },
+        {
+          title: "INSIDE",
+          cmd: "Hunter Open --Fragment/1",
+          icon: "moon",
+          fragment: `Contenus et consultation de la carte`,
+          audio: "assets/inside.mp3",
+        },
+        {
+          title: "INSIDE OUT",
+          cmd: "Hunter Open --Fragment/2",
+          icon: "moon",
+          fragment: `Contenus et consultation de la carte`,
+          audio: "assets/inside-out.mp3",
+        },
+        {
+          title: "MY INSIDE",
+          cmd: "Hunter Open --Fragment/3",
+          icon: "moon",
+          fragment: `Contenus et consultation de la carte`,
+          audio: "assets/my-inside.mp3",
+        },
+        {
+          title: "THIS INSIDE",
+          cmd: "Hunter Open --Fragment/4",
+          icon: "moon",
+          fragment: `Contenus et consultation de la carte`,
+          audio: "assets/this-inside.mp3",
+        },
+      ];
+
+      // --------- Render cards ---------
+      const grid = document.getElementById("grid");
+      DECK.forEach((c, i) => {
+        const el = document.createElement("div");
+        el.className = "card";
+        el.innerHTML = `
+    <div class="frame"></div>
+    ${iconSVG(c.icon)}
+    <div class="label">${c.title}</div>
+    <div class="cmd">${c.cmd}</div>
+    <button class="invoke">Invoquer</button>
+  `;
+        el.querySelector(".invoke").addEventListener("click", () =>
+          openModal(c),
+        );
+        grid.appendChild(el);
+      });
+
+      // --------- Modal / terminal ---------
+      const modal = document.getElementById("modal");
+      const mh = document.getElementById("mh");
+      const term = document.getElementById("term");
+      const copyBtn = document.getElementById("copyCmd");
+      const saveBtn = document.getElementById("saveTxt");
+      const closeBtn = document.getElementById("close");
+      let current = null;
+
+      function openModal(card) {
+        current = card;
+        mh.textContent = `${card.title} · ${card.cmd}`;
+        term.innerHTML = "";
+        modal.classList.add("show");
+        typeIntoTerminal(`$ ${card.cmd}\n`, 14).then(() =>
+          typeIntoTerminal(card.fragment + "\n", 3),
+        );
+      }
+      closeBtn.onclick = () => modal.classList.remove("show");
+      copyBtn.onclick = () => {
+        if (!current) return;
+
+        const a = document.createElement("a");
+        a.href = current.audio || "assets/default.mp3";
+        a.download = current.title.replace(/\s+/g, "_").toLowerCase() + ".mp3";
+        a.click();
+
+        copyBtn.textContent = "Audio téléchargé ✓";
+        setTimeout(
+          () => (copyBtn.textContent = "Télécharge la version Audio (MP3)"),
+          1200,
+        );
+      };
+      saveBtn.onclick = () => {
+        saveBtn.onclick = () => {
+          window.open("fiche_consultation.html", "_blank");
+        };
+      };
+
+      // —— Mini "syntax highlighter" Markdown-like façon VS Code ——
+
+      // échappe HTML basique
+      function esc(s) {
+        return s.replace(
+          /[&<>"]/g,
+          (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[m],
+        );
+      }
+
+      // applique la coloration ligne par ligne
+      function highlightVS(text) {
+        const lines = text.split(/\r?\n/);
+        const out = lines.map((line) => {
+          // prompt $ au début
+          if (/^\s*\$ /.test(line)) {
+            return `<span class="tok-prompt">${esc(line)}</span>`;
+          }
+          // horizontal rule ---
+          if (/^\s*---+\s*$/.test(line)) {
+            return `<span class="tok-hr"></span>`;
+          }
+          // citation > ...
+          if (/^\s*>/.test(line)) {
+            const body = line.replace(/^\s*>\s?/, "");
+            return `<span class="tok-quote">${inlineTokens(body)}</span>`;
+          }
+          // titre markdown #, ##, ...
+          if (/^\s*#{1,6}\s/.test(line)) {
+            const body = line.replace(/^\s*#{1,6}\s*/, "");
+            return `<span class="tok-heading">${inlineTokens(body)}</span>`;
+          }
+          // liste - item
+          if (/^\s*[-*]\s+/.test(line)) {
+            const body = line.replace(/^\s*[-*]\s+/, "");
+            return `<span class="tok-bullet">${inlineTokens(body)}</span>`;
+          }
+          // ligne normale
+          return inlineTokens(line);
+        });
+        return out.join("<br>");
+      }
+
+      // tokens inline: **bold**, *em*, `code`, liens [txt](url), nombres
+      function inlineTokens(s) {
+        s = esc(s);
+        // `code`
+        s = s.replace(
+          /`([^`]+)`/g,
+          (_, c) => `<code class="tok-code">${c}</code>`,
+        );
+        // **bold**
+        s = s.replace(
+          /\*\*([^*]+)\*\*/g,
+          (_, b) => `<span class="tok-strong">${b}</span>`,
+        );
+        // *italique* (évite le bold déjà traité)
+        s = s.replace(
+          /(^|[\s(])\*([^*\n]+)\*(?=[\s).]|$)/g,
+          (_, a, i) => `${a}<span class="tok-em">${i}</span>`,
+        );
+        // [text](url)
+        s = s.replace(
+          /\[([^\]]+)\]\(([^)]+)\)/g,
+          (_, t, u) =>
+            `<a class="tok-link" href="${u}" target="_blank" rel="noopener">${t}</a>`,
+        );
+        // nombres isolés
+        s = s.replace(
+          /(^|[^\w])(\d+)(?![\w.])/g,
+          (_, a, n) => `${a}<span class="tok-number">${n}</span>`,
+        );
+        return s;
+      }
+
+      // remplace l’ancienne saisie: on tape caractère par caractère
+      // mais on re-render avec highlight à chaque tick (rapide pour des fragments)
+      let _buffer = "";
+      async function typeIntoTerminal(text, speed = 8) {
+        for (let i = 0; i < text.length; i++) {
+          _buffer += text[i];
+          term.innerHTML = highlightVS(_buffer);
+          term.scrollTop = term.scrollHeight;
+          await new Promise((r) => setTimeout(r, speed));
+        }
+      }
+
+      // Tirage aléatoire
+      document.getElementById("btnDraw").onclick = () => {
+        const idx = Math.floor(Math.random() * DECK.length);
+        openModal(DECK[idx]);
+      };
+      document.getElementById("btnAbout").onclick = () => {
+        const about = {
+          cartes: DECK.length,
+          version: "prototype · noir/or",
+          auteur: "HUNTER",
+          note: "Clique, invoque, sauvegarde le fragment.",
+        };
+        alert(`HUNTER-OS : GRIMOIRE\nPages: ${about.cartes}\n${about.note}`);
+      };
+
+      // --------- Icons (SVG) ---------
+      function iconSVG(name) {
+        const attrs = 'class="icon" viewBox="0 0 64 64"';
+        switch (name) {
+          case "drop":
+            return `<svg ${attrs}><path d="M32 6 C32 6 15 24 15 36 a17 17 0 1 0 34 0 C49 24 32 6 32 6z"/></svg>`;
+          case "dropCross":
+            return `<svg ${attrs}><path d="M32 6 C32 6 15 24 15 36 a17 17 0 1 0 34 0 C49 24 32 6 32 6z"/><path d="M32 22 v26"/><path d="M19 35 h26"/></svg>`;
+          case "flame":
+            return `<svg ${attrs}><path d="M34 8 C44 20 26 22 38 34 c8 8 3 20-6 20 -9 0-16-7-16-16 0-10 8-14 10-20 1-4 0-7-2-10 6 2 9 6 10 10z"/></svg>`;
+          case "moon":
+            return `
+  <svg class="icon moon" viewBox="0 0 64 64">
+    <!-- Croissant : base toujours visible -->
+    <path class="crescent-base"
+          d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+
+    <!-- Reflet animé qui “glisse” -->
+    <path class="crescent-sheen"
+          d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+
+    <!-- Constellation en orbite -->
+    <g class="orbit">
+      <g transform="translate(52 16)">
+        <path class="star s1" d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"/>
+      </g>
+      <g transform="translate(16 18)">
+        <path class="star s2" d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"/>
+      </g>
+      <g transform="translate(50 48)">
+        <path class="star s3" d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"/>
+      </g>
+      <g transform="translate(20 50)">
+        <path class="star s4" d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"/>
+      </g>
+    </g>
+  </svg>`;
+
+          case "mirror":
+            return `<svg ${attrs}><rect x="14" y="8" width="36" height="48" rx="6"/><path d="M18 16 h28"/></svg>`;
+          case "gate":
+            return `<svg ${attrs}><path d="M14 50 v-18 a18 18 0 1 1 36 0 v18"/><path d="M14 50 h36"/></svg>`;
+          case "pin":
+            return `<svg ${attrs}><path d="M32 6 a12 12 0 0 1 12 12 c0 10-12 24-12 24S20 28 20 18A12 12 0 0 1 32 6z"/><circle cx="32" cy="18" r="4"/></svg>`;
+          case "crownDown":
+            return `<svg ${attrs}><path d="M10 24 l10 8 12-14 12 14 10-8 v26 H10z"/></svg>`;
+          case "eye":
+            return `<svg ${attrs}><path d="M4 32 C12 18 24 10 32 10 s20 8 28 22C52 46 40 54 32 54S12 46 4 32z"/><circle cx="32" cy="32" r="8"/></svg>`;
+          case "trail":
+            return `<svg ${attrs}><path d="M10 42 c12-6 12-20 26-26 8-4 16-4 18-4"/><circle cx="14" cy="44" r="3"/><circle cx="36" cy="24" r="3"/><circle cx="56" cy="12" r="3"/></svg>`;
+          case "voice":
+            return `<svg ${attrs}><rect x="20" y="18" width="10" height="28" rx="5"/><rect x="34" y="12" width="10" height="40" rx="5"/><path d="M12 32 h8 M52 32 h8"/></svg>`;
+          case "seal":
+            return `<svg ${attrs}><circle cx="32" cy="32" r="20"/><path d="M20 32 h24 M32 20 v24"/></svg>`;
+          // 🥂 Nouveau symbole : Verre à martini
+          case "martini":
+            return `
+  <svg ${attrs}>
+    <g>
+      <!-- Verre -->
+      <path d="M12 6 h40 l-20 24z" stroke="currentColor" fill="none" stroke-width="2"/>
+      <path d="M32 30 v20" stroke="currentColor" stroke-width="2"/>
+      <rect x="28" y="50" width="8" height="4" fill="currentColor"/>
+      
+      <!-- Olive -->
+      <circle class="olive" cx="42" cy="10" r="3" fill="currentColor"/>
+      <line x1="32" y1="10" x2="42" y2="10" stroke="currentColor" stroke-width="2"/>
+    </g>
+  </svg>`;
+
+          default:
+            return `<svg ${attrs}><circle cx="32" cy="32" r="24"/></svg>`;
+        }
+      }
+    </script>
+  </body>
+</html>
