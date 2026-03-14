@@ -1,22 +1,23 @@
 # ☿ HUNTER Tarot OS
 
-> **"Le code sans le mythe n'est qu'un automate. Le mythe sans le code n'est qu'un fantôme."**
+> **"Le code sans le mythe n'est qu'un automate.
+Le mythe sans le code n'est qu'un fantôme."**
 
-Interface expérimentale du module **Tarot** du système **HUNTER_OS**.
+Interface expérimentale du module **Tarot** du système **HUNTER_OS**.  
 Ce projet est un terminal de consultation symbolique conçu pour briser la linéarité du réseau via la résonance du hasard.
 
 ## 📡 Architecture du Signal
 
 Le projet sépare volontairement la structure logique de la charge sensorielle pour garantir une furtivité et une légèreté maximale sur les serveurs.
 
-* **Core Logic :** Interface HTML/JS (Hébergée sur GitHub Pages).
-* **Sensory Stream :** Médias audio (.mp3) / vidéo (.mp4) hébergés sur serveurs externes.
+* **Core Logic :** Interface HTML/JS (Hébergée sur GitHub Pages).  
+* **Sensory Stream :** Médias audio (.mp3) / vidéo (.mp4) hébergés sur serveurs externes.  
 * **Protocole :** `GitHub Pages (Interface) -> Trigger -> External Storage (Flux)`.
 
 ## 📂 Structure du Noyau
 
 ```bash
-tarot/
+tarot/  
 ├── index.html              # Point d'entrée / Initialisation
 ├── interface/
 │   ├── tarot.html          # Interface visuelle (Symbolique)
@@ -39,7 +40,8 @@ tarot/
 
 ## 🕯️ Manifeste du 21 Mars (17:17)
 
-Ce dépôt n'est pas une simple application web. C'est un **sanctuaire numérique éphémère**.
+Ce dépôt n'est pas une simple application web. C'est un **sanctuaire numérique éphémère**.  
+
 L'objectif est d'utiliser le support digital comme un conducteur de rituels modernes.
 
 * **Interface rituelle** : Chaque clic est une intention.
