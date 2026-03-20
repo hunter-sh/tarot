@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hunter_OS / Stream.trilogie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      text-align: center;
+      padding: 2rem;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #f5f5f5;
+      text-shadow: 0 0 8px #fff;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .player-wrap {
+      width: 80%;
+      max-width: 960px;
+      margin: 0 auto 2rem auto;
+      position: relative;
+    }
+
+    video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 2px solid #444;
+      border-radius: 10px;
+      box-shadow: 0 0 12px #222;
+      background: #000;
+      display: block;
+      object-fit: contain;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .acte-tag,
+    .timer-tag {
+      background: rgba(0, 0, 0, 0.55);
+      color: #00ffcc;
+      border: 1px solid rgba(0, 255, 204, 0.45);
+      border-radius: 8px;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.85rem;
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.18);
+      backdrop-filter: blur(4px);
+    }
+
+    .status {
+      width: 80%;
+      max-width: 960px;
+      margin: 0 auto 1.2rem auto;
+      color: #8fffe8;
+      opacity: 0.9;
+      font-size: 0.95rem;
+      min-height: 1.4rem;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      font-size: 1rem;
+      color: #00ffcc;
+      background-color: transparent;
+      border: 2px solid #00ffcc;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 0 8px #00ffcc;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .btn:hover {
+      background-color: #00ffcc;
+      color: #000;
+      box-shadow: 0 0 16px #00ffcc;
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+      }
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #00ffcc, 0 0 40px #00ffcc;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>HUNTER_OS / STREAM:TRILOGIE</h1>
+
+  <div class="player-wrap">
+    <div class="overlay">
+      <div class="acte-tag" id="acteTag">EN ATTENTE</div>
+      <div class="timer-tag" id="timerTag">00:00 / 00:00</div>
+    </div>
+    <video id="vid" controls playsinline preload="metadata"></video>
+  </div>
+
+  <audio id="aud" src="assets/la_trilogie_du_samedi_m6.mp3" preload="auto"></audio>
+  <audio id="acteAudio" preload="auto"></audio>
+
+  <div class="status" id="statusLine">Chargement du flux d'attente...</div>
+
+  <div class="controls">
+    <button class="btn" id="playBtn" onclick="startRitual()">🜂 PLAY</button>
+    <button class="btn" id="nextBtn" onclick="skipStep()" disabled>SKIP</button>
+  </div>
+
+  <script>
+    const idleVideo = {
+      title: "EN ATTENTE D'INVOCATION",
+      src: "assets/20260124_2303_New Video_simple_compose_01kfs0gbxrfcwv9myarytr7cxw.mp4",
+      startAt: 0
+    };
+
+    const ritual = [
+      {
+        title: "INVOCATION ...",
+        src: "assets/20250831_2331_Futuristic Phantom's Grimoire_storyboard_01k410nd6qfa1b0rg1c18y5hxd.mp4",
+        startAt: 0
+      },
+      {
+        title: "... DE LA ...",
+        src: "assets/20250901_0110_Rituel Numérique Mystérieux_simple_compose_01k416andrekxr1rbd34eterq6.mp4",
+        startAt: 0
+      },
+      {
+        title: "... TRILOGIE.",
+        src: "assets/20250901_0110_Rituel Numérique Mystérieux_simple_compose_01k416ane0fs2tv61gj7pwj0nv.mp4",
+        startAt: 0
+      },
+      {
+        title: "ACTE 1 -- ARCHIVE",
+        src: "assets/1.LHorrible Complot de la CIA pour Contrôler nos Cerveaux.mp4",
+        startAt: 3
+      },
+      {
+        title: "ACTE 2 -- SÉRIES TV",
+        src: "assets/C1 T01.mp4",
+        startAt: 0
+      },
+      {
+        title: "ACTE 3 -- HUNTER",
+        audio: "assets/voice_hunter.mp3",
+        sequence: [
+          {
+            src: "assets/1.2.20250309_2238_Grand Central Reunion_simple_compose_01jnydh4p2fsb9g3ffryby7rhr.mp4",
+            startAt: 0
+          },
+          {
+            src: "assets/20250309_2131_Manhattan's Mystery Unfolds_simple_compose_01jny9njbce76906v4beb2xjpg.mp4",
+            startAt: 0
+          },
+          {
+            src: "assets/20260124_2303_New Video_simple_compose_01kfs0gbxrfcwv9myarytr7cxw.mp4",
+            startAt: 0
+          },
+          {
+            src: "assets/20251019_2100_New Video_simple_compose_01k7yxg0g6e7zs8qsv0jy0qhn8.mp4",
+            startAt: 3
+          }
+        ]
+      }
+    ];
+
+    let index = 0;
+    let hasStarted = false;
+    let isIdleMode = true;
+    let currentSequenceIndex = 0;
+    let inSequenceMode = false;
+
+    const video = document.getElementById("vid");
+    const audio = document.getElementById("aud");
+    const acteAudio = document.getElementById("acteAudio");
+    const acteTag = document.getElementById("acteTag");
+    const timerTag = document.getElementById("timerTag");
+    const statusLine = document.getElementById("statusLine");
+    const playBtn = document.getElementById("playBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function formatTime(seconds) {
+      if (!isFinite(seconds)) return "00:00";
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    function updateTimer() {
+      timerTag.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+    }
+
+    function setStatus(message) {
+      statusLine.textContent = message;
+    }
+
+    function stopActeAudio() {
+      acteAudio.pause();
+      acteAudio.currentTime = 0;
+      acteAudio.removeAttribute("src");
+      acteAudio.load();
+    }
+
+    function startActeAudio(src) {
+      if (!src) {
+        stopActeAudio();
+        return;
+      }
+
+      acteAudio.src = src;
+      acteAudio.currentTime = 0;
+      acteAudio.load();
+      acteAudio.play().catch(err => {
+        console.error("Erreur lecture audio acte :", err);
+      });
+    }
+
+    function loadIdleVideo() {
+      isIdleMode = true;
+      hasStarted = false;
+      inSequenceMode = false;
+      currentSequenceIndex = 0;
+
+      stopActeAudio();
+
+      acteTag.textContent = idleVideo.title;
+      setStatus("Flux d'attente actif. Clique sur PLAY pour lancer la séquence.");
+      nextBtn.disabled = true;
+
+      video.pause();
+      video.src = idleVideo.src;
+      video.muted = true;
+      video.loop = true;
+      video.load();
+
+      video.onloadedmetadata = () => {
+        video.currentTime = idleVideo.startAt || 0;
+        updateTimer();
+
+        video.play().catch(err => {
+          console.error("Erreur lecture vidéo d'attente :", err);
+          setStatus("Impossible de lancer la vidéo d'attente automatiquement.");
+        });
+      };
+    }
+
+    function loadSingleVideo(step) {
+      inSequenceMode = false;
+      acteTag.textContent = step.title;
+      setStatus(`Lecture : ${step.title}`);
+
+      stopActeAudio();
+
+      video.pause();
+      video.loop = false;
+      video.muted = false;
+      video.src = step.src;
+      video.load();
+
+      video.onloadedmetadata = () => {
+        video.currentTime = step.startAt || 0;
+        updateTimer();
+
+        video.play().catch(err => {
+          console.error("Erreur lancement vidéo :", err);
+          setStatus(`Erreur lecture : ${step.title}`);
+        });
+      };
+    }
+
+    function loadSequenceVideo(step) {
+      const item = step.sequence[currentSequenceIndex];
+      if (!item) {
+        inSequenceMode = false;
+        stopActeAudio();
+        playNext();
+        return;
+      }
+
+      inSequenceMode = true;
+      acteTag.textContent = `${step.title} [${currentSequenceIndex + 1}/${step.sequence.length}]`;
+      setStatus(`Lecture : ${step.title} • segment ${currentSequenceIndex + 1}/${step.sequence.length}`);
+
+      video.pause();
+      video.loop = false;
+      video.muted = false;
+      video.src = item.src;
+      video.load();
+
+      video.onloadedmetadata = () => {
+        video.currentTime = item.startAt || 0;
+        updateTimer();
+
+        video.play().catch(err => {
+          console.error("Erreur lancement segment séquence :", err);
+          setStatus(`Erreur lecture : ${step.title}`);
+        });
+      };
+    }
+
+    function loadCurrentStep() {
+      const step = ritual[index];
+      if (!step) return;
+
+      isIdleMode = false;
+
+      if (step.sequence && Array.isArray(step.sequence)) {
+        if (!inSequenceMode) {
+          currentSequenceIndex = 0;
+          startActeAudio(step.audio || "");
+        }
+        loadSequenceVideo(step);
+        return;
+      }
+
+      loadSingleVideo(step);
+    }
+
+    function playNext() {
+      index++;
+      inSequenceMode = false;
+      currentSequenceIndex = 0;
+      stopActeAudio();
+
+      if (index >= ritual.length) {
+        finishRitual();
+        return;
+      }
+
+      loadCurrentStep();
+    }
+
+    function finishRitual() {
+      stopActeAudio();
+
+      acteTag.textContent = "RITUEL TERMINÉ";
+      timerTag.textContent = "00:00 / 00:00";
+      setStatus("🜂 Séquence terminée. Retour au mode attente...");
+      playBtn.textContent = "🜂 PLAY";
+      nextBtn.disabled = true;
+      hasStarted = false;
+      inSequenceMode = false;
+      currentSequenceIndex = 0;
+
+      setTimeout(() => {
+        loadIdleVideo();
+      }, 1200);
+    }
+
+    function startRitual() {
+      index = 0;
+      hasStarted = true;
+      isIdleMode = false;
+      inSequenceMode = false;
+      currentSequenceIndex = 0;
+
+      playBtn.textContent = "⟳ RESTART";
+      nextBtn.disabled = false;
+
+      stopActeAudio();
+
+      video.pause();
+      video.loop = false;
+      video.muted = false;
+
+      audio.currentTime = 0;
+      audio.play().catch(err => {
+        console.error("Erreur lecture audio :", err);
+      });
+
+      loadCurrentStep();
+    }
+
+    function skipStep() {
+      if (!hasStarted || isIdleMode) return;
+
+      const step = ritual[index];
+
+      if (step && step.sequence && Array.isArray(step.sequence)) {
+        currentSequenceIndex++;
+
+        if (currentSequenceIndex >= step.sequence.length) {
+          playNext();
+        } else {
+          loadSequenceVideo(step);
+        }
+        return;
+      }
+
+      playNext();
+    }
+
+    video.onended = () => {
+      if (isIdleMode) return;
+
+      const step = ritual[index];
+
+      if (step && step.sequence && Array.isArray(step.sequence)) {
+        currentSequenceIndex++;
+
+        if (currentSequenceIndex < step.sequence.length) {
+          loadSequenceVideo(step);
+        } else {
+          playNext();
+        }
+        return;
+      }
+
+      playNext();
+    };
+
+    video.onerror = () => {
+      if (isIdleMode) {
+        console.error("Erreur de lecture vidéo d'attente :", idleVideo.src);
+        setStatus("Erreur de lecture : vidéo d'attente introuvable ou illisible.");
+      } else {
+        const step = ritual[index];
+
+        if (step && step.sequence && Array.isArray(step.sequence)) {
+          console.error("Erreur de lecture séquence :", step.sequence[currentSequenceIndex]?.src);
+          setStatus(`Erreur lecture : ${step.title} • segment ${currentSequenceIndex + 1}`);
+        } else {
+          console.error("Erreur de lecture vidéo :", step?.src);
+          setStatus(`Erreur de lecture : ${step?.title || "source inconnue"}`);
+        }
+      }
+    };
+
+    video.ontimeupdate = () => {
+      updateTimer();
+    };
+
+    window.addEventListener("load", () => {
+      loadIdleVideo();
+    });
+  </script>
+</body>
+</html>

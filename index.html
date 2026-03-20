@@ -1,12 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hunter OS · TAROT</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta
       name="description"
       content="Tarot-OS — système de lecture symbolique structuré. Un tirage moderne, clair et stratégique dans l'univers Hunter OS."
@@ -44,8 +42,15 @@
 
       body {
         margin: 0;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI,
-          Roboto, Arial, sans-serif;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
         color: var(--ink);
         background:
           radial-gradient(
@@ -75,10 +80,14 @@
         pointer-events: none;
         opacity: 0.06;
         background-image:
-          linear-gradient(rgba(255,255,255,0.22) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.22) 1px, transparent 1px);
+          linear-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.22) 1px, transparent 1px);
         background-size: 28px 28px;
-        mask-image: radial-gradient(circle at center, black 35%, transparent 90%);
+        mask-image: radial-gradient(
+          circle at center,
+          black 35%,
+          transparent 90%
+        );
       }
 
       a {
@@ -124,8 +133,16 @@
         display: grid;
         place-items: center;
         background:
-          radial-gradient(circle at 50% 30%, rgba(215,180,106,0.12), transparent 55%),
-          linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+          radial-gradient(
+            circle at 50% 30%,
+            rgba(215, 180, 106, 0.12),
+            transparent 55%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.03),
+            rgba(255, 255, 255, 0.01)
+          );
         box-shadow: inset 0 0 18px rgba(215, 180, 106, 0.06);
       }
 
@@ -163,6 +180,19 @@
         flex-wrap: wrap;
       }
 
+      #nav {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        min-width: 56px;
+        height: 56px;
+        padding: 0 16px;
+        margin-left: auto;
+        font-size: 20px;
+        line-height: 1;
+        flex: 0 0 auto;
+      }
+
       .nav-link {
         color: var(--muted);
         font-size: 14px;
@@ -194,18 +224,26 @@
       }
 
       .btn-primary {
-        background: linear-gradient(180deg, rgba(215,180,106,0.16), rgba(215,180,106,0.08));
-        border-color: rgba(215,180,106,0.58);
+        background: linear-gradient(
+          180deg,
+          rgba(215, 180, 106, 0.16),
+          rgba(215, 180, 106, 0.08)
+        );
+        border-color: rgba(215, 180, 106, 0.58);
         color: var(--gold);
-        box-shadow: inset 0 0 18px rgba(215,180,106,0.08);
+        box-shadow: inset 0 0 18px rgba(215, 180, 106, 0.08);
       }
 
       .btn-primary:hover {
-        background: linear-gradient(180deg, rgba(215,180,106,0.22), rgba(215,180,106,0.10));
+        background: linear-gradient(
+          180deg,
+          rgba(215, 180, 106, 0.22),
+          rgba(215, 180, 106, 0.1)
+        );
       }
 
       .btn-ghost:hover {
-        background: rgba(255,255,255,0.04);
+        background: rgba(255, 255, 255, 0.04);
       }
 
       .hero {
@@ -225,13 +263,13 @@
         align-items: center;
         gap: 8px;
         color: var(--gold);
-        border: 1px solid rgba(215,180,106,0.24);
+        border: 1px solid rgba(215, 180, 106, 0.24);
         border-radius: 999px;
         padding: 8px 12px;
         font-size: 12px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        background: rgba(215,180,106,0.06);
+        background: rgba(215, 180, 106, 0.06);
       }
 
       .eyebrow-dot {
@@ -239,7 +277,7 @@
         height: 7px;
         border-radius: 50%;
         background: var(--gold);
-        box-shadow: 0 0 14px rgba(215,180,106,0.6);
+        box-shadow: 0 0 14px rgba(215, 180, 106, 0.6);
       }
 
       .hero h1 {
@@ -277,8 +315,8 @@
       }
 
       .mini-stat {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.06);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: 16px;
         padding: 14px 14px;
       }
@@ -299,8 +337,16 @@
       .hero-card {
         position: relative;
         background:
-          linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
-          linear-gradient(180deg, rgba(14,18,23,0.96), rgba(10,13,17,0.96));
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.02)
+          ),
+          linear-gradient(
+            180deg,
+            rgba(14, 18, 23, 0.96),
+            rgba(10, 13, 17, 0.96)
+          );
         border: 1px solid var(--border);
         border-radius: 28px;
         box-shadow: var(--shadow);
@@ -314,9 +360,21 @@
         inset: 0;
         pointer-events: none;
         background:
-          radial-gradient(circle at 20% 10%, rgba(215,180,106,0.12), transparent 30%),
-          radial-gradient(circle at 80% 20%, rgba(141,211,255,0.10), transparent 28%),
-          radial-gradient(circle at 50% 100%, rgba(143,124,255,0.10), transparent 38%);
+          radial-gradient(
+            circle at 20% 10%,
+            rgba(215, 180, 106, 0.12),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(141, 211, 255, 0.1),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 50% 100%,
+            rgba(143, 124, 255, 0.1),
+            transparent 38%
+          );
       }
 
       .hero-card-top {
@@ -328,7 +386,9 @@
       }
 
       .terminal-tag {
-        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-family:
+          "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+          monospace;
         color: var(--muted);
         font-size: 12px;
         letter-spacing: 0.04em;
@@ -347,7 +407,7 @@
         height: 8px;
         border-radius: 50%;
         background: var(--ok);
-        box-shadow: 0 0 12px rgba(131,196,138,0.9);
+        box-shadow: 0 0 12px rgba(131, 196, 138, 0.9);
       }
 
       .cards-preview {
@@ -360,9 +420,13 @@
         position: relative;
         aspect-ratio: 0.68;
         border-radius: 18px;
-        border: 1px solid rgba(215,180,106,0.34);
+        border: 1px solid rgba(215, 180, 106, 0.34);
         background:
-          linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.03),
+            rgba(255, 255, 255, 0.01)
+          ),
           linear-gradient(180deg, #101318, #090b0f);
         display: flex;
         flex-direction: column;
@@ -376,7 +440,7 @@
         content: "";
         position: absolute;
         inset: 8px;
-        border: 1px solid rgba(215,180,106,0.18);
+        border: 1px solid rgba(215, 180, 106, 0.18);
         border-radius: 14px;
         pointer-events: none;
       }
@@ -412,7 +476,7 @@
       .hero-card-foot {
         margin-top: 28px;
         padding-top: 16px;
-        border-top: 1px solid rgba(255,255,255,0.07);
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
         color: var(--muted);
         font-size: 13px;
         line-height: 1.65;
@@ -470,8 +534,8 @@
         display: grid;
         place-items: center;
         color: var(--gold);
-        background: rgba(215,180,106,0.08);
-        border: 1px solid rgba(215,180,106,0.18);
+        background: rgba(215, 180, 106, 0.08);
+        border: 1px solid rgba(215, 180, 106, 0.18);
         margin-bottom: 16px;
       }
 
@@ -504,8 +568,8 @@
         align-items: center;
         justify-content: center;
         color: var(--gold);
-        border: 1px solid rgba(215,180,106,0.35);
-        background: rgba(215,180,106,0.05);
+        border: 1px solid rgba(215, 180, 106, 0.35);
+        background: rgba(215, 180, 106, 0.05);
         font-size: 13px;
         font-weight: 700;
         margin-bottom: 14px;
@@ -519,9 +583,13 @@
 
       .terminal {
         background:
-          linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.03),
+            rgba(255, 255, 255, 0.01)
+          ),
           #0a0d10;
-        border: 1px solid rgba(215,180,106,0.18);
+        border: 1px solid rgba(215, 180, 106, 0.18);
         border-radius: 22px;
         overflow: hidden;
         box-shadow: var(--shadow);
@@ -532,15 +600,15 @@
         align-items: center;
         gap: 8px;
         padding: 12px 16px;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-        background: rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
       }
 
       .terminal-dot {
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        background: rgba(255,255,255,0.18);
+        background: rgba(255, 255, 255, 0.18);
       }
 
       .terminal-dot:nth-child(1) {
@@ -565,7 +633,9 @@
 
       .terminal-body {
         padding: 18px;
-        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-family:
+          "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+          monospace;
         font-size: 13px;
         line-height: 1.75;
         color: #d4d8df;
@@ -604,8 +674,8 @@
         align-items: start;
         padding: 16px;
         border-radius: 18px;
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.06);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
       }
 
       .method-item .n {
@@ -615,8 +685,8 @@
         place-items: center;
         border-radius: 14px;
         color: var(--gold);
-        background: rgba(215,180,106,0.08);
-        border: 1px solid rgba(215,180,106,0.22);
+        background: rgba(215, 180, 106, 0.08);
+        border: 1px solid rgba(215, 180, 106, 0.22);
         font-weight: 700;
       }
 
@@ -659,9 +729,13 @@
       .fake-card {
         aspect-ratio: 0.7;
         border-radius: 18px;
-        border: 1px solid rgba(215,180,106,0.28);
+        border: 1px solid rgba(215, 180, 106, 0.28);
         background:
-          linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+          linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.03),
+            rgba(255, 255, 255, 0.01)
+          ),
           #0c1014;
         display: flex;
         flex-direction: column;
@@ -709,9 +783,9 @@
       }
 
       .faq-item {
-        border: 1px solid rgba(255,255,255,0.07);
+        border: 1px solid rgba(255, 255, 255, 0.07);
         border-radius: 18px;
-        background: rgba(255,255,255,0.03);
+        background: rgba(255, 255, 255, 0.03);
         overflow: hidden;
       }
 
@@ -755,9 +829,21 @@
       .cta-card {
         padding: 28px;
         background:
-          radial-gradient(circle at top right, rgba(143,124,255,0.12), transparent 28%),
-          radial-gradient(circle at top left, rgba(141,211,255,0.10), transparent 30%),
-          linear-gradient(180deg, rgba(15,18,24,0.98), rgba(10,13,17,0.98));
+          radial-gradient(
+            circle at top right,
+            rgba(143, 124, 255, 0.12),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at top left,
+            rgba(141, 211, 255, 0.1),
+            transparent 30%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(15, 18, 24, 0.98),
+            rgba(10, 13, 17, 0.98)
+          );
       }
 
       .cta-card h2 {
@@ -781,7 +867,7 @@
       }
 
       .footer {
-        border-top: 1px solid rgba(255,255,255,0.06);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
         padding: 22px 0 34px;
         color: var(--muted-2);
         font-size: 13px;
@@ -797,7 +883,9 @@
       .reveal {
         opacity: 0;
         transform: translateY(16px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
       }
 
       .reveal.visible {
@@ -824,12 +912,46 @@
 
       @media (max-width: 760px) {
         .topbar-inner {
-          align-items: flex-start;
+          width: min(var(--max), calc(100% - 20px));
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          flex-wrap: wrap;
+          position: relative;
+        }
+
+        .brand {
+          flex: 1 1 auto;
+          min-width: 0;
+        }
+
+        #nav {
+          display: inline-flex;
         }
 
         .nav {
+          display: none;
           width: 100%;
           margin-left: 0;
+          margin-top: 12px;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 8px;
+          padding: 14px;
+          border-radius: 18px;
+          background: rgba(10, 13, 17, 0.96);
+          border: 1px solid rgba(215, 180, 106, 0.18);
+          box-shadow: var(--shadow);
+        }
+
+        .nav.open {
+          display: flex;
+        }
+
+        .nav-link,
+        .nav .btn {
+          width: 100%;
         }
 
         .cards-preview,
@@ -846,30 +968,56 @@
         }
       }
 
+      @media (min-width: 761px) {
+        #nav {
+          display: none !important;
+        }
+
+        .nav {
+          display: flex !important;
+          width: auto;
+          margin-top: 0;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          box-shadow: none;
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+
       @media (max-width: 520px) {
         .wrap,
         .topbar-inner {
           width: min(var(--max), calc(100% - 20px));
         }
 
-        .btn,
-        .nav-link {
-          width: 100%;
-          justify-content: center;
-        }
-
-        .cta-actions,
-        .hero-actions {
+        .hero-actions,
+        .cta-actions {
           flex-direction: column;
         }
 
-        .btn {
+        .hero-actions .btn,
+        .cta-actions .btn,
+        .nav-link,
+        .nav .btn {
           width: 100%;
+          justify-content: center;
         }
 
         .cards-preview,
         .fake-ui {
           grid-template-columns: 1fr 1fr;
+        }
+
+        .brand-title {
+          font-size: 13px;
+          letter-spacing: 0.12em;
+        }
+
+        .brand-sub {
+          font-size: 10px;
+          letter-spacing: 0.06em;
         }
       }
     </style>
@@ -893,7 +1041,18 @@
           </div>
         </a>
 
-        <nav class="nav">
+        <button
+          id="nav"
+          class="btn btn-primary"
+          type="button"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          ☰
+        </button>
+
+        <nav class="nav" id="mobileMenu">
           <a class="nav-link" href="#concept">Concept</a>
           <a class="nav-link" href="#protocol">Protocole</a>
           <a class="nav-link" href="#showcase">Interface</a>
@@ -920,25 +1079,25 @@
             </h1>
 
             <p class="lead">
-              Un tirage structuré. 
-              <br>Une lecture claire. 
-              <br>Un protocole pensé comme un outil d’analyse, pas comme une promesse de voyance. 
-              <br>Tarot-OS transforme le tirage en système lisible, moderne et exploitable.
+              Un tirage structuré.
+              <br />Une lecture claire. <br />Un protocole pensé comme un outil
+              d’analyse, pas comme une promesse de voyance. <br />Tarot-OS
+              transforme le tirage en système lisible, moderne et exploitable.
             </p>
 
             <div class="hero-actions">
               <button class="btn btn-primary" id="heroLaunchBtn">
                 Réservez un créneau
               </button>
-              <a href="#protocol" class="btn btn-ghost">
-                Voir le protocole
-              </a>
+              <a href="#protocol" class="btn btn-ghost"> Voir le protocole </a>
             </div>
 
             <div class="hero-meta">
               <div class="mini-stat">
                 <strong>32 cartes</strong>
-                <span>Un deck structuré, sélectionné position par position.</span>
+                <span
+                  >Un deck structuré, sélectionné position par position.</span
+                >
               </div>
               <div class="mini-stat">
                 <strong>7 emplacements</strong>
@@ -946,7 +1105,9 @@
               </div>
               <div class="mini-stat">
                 <strong>Hunter OS</strong>
-                <span>Une interface sombre, sobre, construite comme un outil.</span>
+                <span
+                  >Une interface sombre, sobre, construite comme un outil.</span
+                >
               </div>
             </div>
           </div>
@@ -960,20 +1121,38 @@
             <div class="cards-preview">
               <div class="preview-card offset-1">
                 <svg class="moon-icon" viewBox="0 0 64 64" fill="none">
-                  <path class="crescent-base" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
-                  <path class="crescent-sheen" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+                  <path
+                    class="crescent-base"
+                    d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                  />
+                  <path
+                    class="crescent-sheen"
+                    d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                  />
                   <g class="orbit">
                     <g transform="translate(52 16)">
-                      <path class="star s1" d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"/>
+                      <path
+                        class="star s1"
+                        d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"
+                      />
                     </g>
                     <g transform="translate(16 18)">
-                      <path class="star s2" d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"/>
+                      <path
+                        class="star s2"
+                        d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"
+                      />
                     </g>
                     <g transform="translate(50 48)">
-                      <path class="star s3" d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"/>
+                      <path
+                        class="star s3"
+                        d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"
+                      />
                     </g>
                     <g transform="translate(20 50)">
-                      <path class="star s4" d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"/>
+                      <path
+                        class="star s4"
+                        d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"
+                      />
                     </g>
                   </g>
                 </svg>
@@ -982,20 +1161,38 @@
 
               <div class="preview-card offset-2">
                 <svg class="moon-icon" viewBox="0 0 64 64" fill="none">
-                  <path class="crescent-base" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
-                  <path class="crescent-sheen" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+                  <path
+                    class="crescent-base"
+                    d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                  />
+                  <path
+                    class="crescent-sheen"
+                    d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                  />
                   <g class="orbit">
                     <g transform="translate(52 16)">
-                      <path class="star s1" d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"/>
+                      <path
+                        class="star s1"
+                        d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"
+                      />
                     </g>
                     <g transform="translate(16 18)">
-                      <path class="star s2" d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"/>
+                      <path
+                        class="star s2"
+                        d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"
+                      />
                     </g>
                     <g transform="translate(50 48)">
-                      <path class="star s3" d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"/>
+                      <path
+                        class="star s3"
+                        d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"
+                      />
                     </g>
                     <g transform="translate(20 50)">
-                      <path class="star s4" d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"/>
+                      <path
+                        class="star s4"
+                        d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"
+                      />
                     </g>
                   </g>
                 </svg>
@@ -1004,20 +1201,38 @@
 
               <div class="preview-card">
                 <svg class="moon-icon" viewBox="0 0 64 64" fill="none">
-                  <path class="crescent-base" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
-                  <path class="crescent-sheen" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+                  <path
+                    class="crescent-base"
+                    d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                  />
+                  <path
+                    class="crescent-sheen"
+                    d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                  />
                   <g class="orbit">
                     <g transform="translate(52 16)">
-                      <path class="star s1" d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"/>
+                      <path
+                        class="star s1"
+                        d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"
+                      />
                     </g>
                     <g transform="translate(16 18)">
-                      <path class="star s2" d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"/>
+                      <path
+                        class="star s2"
+                        d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"
+                      />
                     </g>
                     <g transform="translate(50 48)">
-                      <path class="star s3" d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"/>
+                      <path
+                        class="star s3"
+                        d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"
+                      />
                     </g>
                     <g transform="translate(20 50)">
-                      <path class="star s4" d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"/>
+                      <path
+                        class="star s4"
+                        d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"
+                      />
                     </g>
                   </g>
                 </svg>
@@ -1026,20 +1241,38 @@
 
               <div class="preview-card offset-3">
                 <svg class="moon-icon" viewBox="0 0 64 64" fill="none">
-                  <path class="crescent-base" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
-                  <path class="crescent-sheen" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+                  <path
+                    class="crescent-base"
+                    d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                  />
+                  <path
+                    class="crescent-sheen"
+                    d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                  />
                   <g class="orbit">
                     <g transform="translate(52 16)">
-                      <path class="star s1" d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"/>
+                      <path
+                        class="star s1"
+                        d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"
+                      />
                     </g>
                     <g transform="translate(16 18)">
-                      <path class="star s2" d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"/>
+                      <path
+                        class="star s2"
+                        d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"
+                      />
                     </g>
                     <g transform="translate(50 48)">
-                      <path class="star s3" d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"/>
+                      <path
+                        class="star s3"
+                        d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"
+                      />
                     </g>
                     <g transform="translate(20 50)">
-                      <path class="star s4" d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"/>
+                      <path
+                        class="star s4"
+                        d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"
+                      />
                     </g>
                   </g>
                 </svg>
@@ -1049,9 +1282,9 @@
 
             <div class="hero-card-foot">
               Une interface pensée comme un terminal symbolique.
-              <br><strong>Question</strong> → <strong>tirage</strong> →
-              <strong>lecture structurée</strong>. 
-              <br>Pas de folklore inutile.
+              <br /><strong>Question</strong> → <strong>tirage</strong> →
+              <strong>lecture structurée</strong>. <br />Pas de folklore
+              inutile.
             </div>
           </div>
         </div>
@@ -1062,9 +1295,11 @@
           <div class="section-head reveal">
             <h2>Pourquoi Tarot-OS existe</h2>
             <p>
-              "La plupart des tirages se contentent d’improviser autour des cartes.
-              <br>Tarot-OS fait autre chose : il structure la lecture, isole les tensions,
-              clarifie la dynamique et transforme le symbole en outil d’analyse"
+              "La plupart des tirages se contentent d’improviser autour des
+              cartes.
+              <br />Tarot-OS fait autre chose : il structure la lecture, isole
+              les tensions, clarifie la dynamique et transforme le symbole en
+              outil d’analyse"
             </p>
           </div>
 
@@ -1072,43 +1307,85 @@
             <article class="feature-card reveal">
               <div class="feature-icon">
                 <svg viewBox="0 0 64 64" width="24" height="24" fill="none">
-                  <path d="M12 50v-18a20 20 0 1 1 40 0v18" stroke="currentColor" stroke-width="2"/>
-                  <path d="M12 50h40" stroke="currentColor" stroke-width="2"/>
+                  <path
+                    d="M12 50v-18a20 20 0 1 1 40 0v18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path d="M12 50h40" stroke="currentColor" stroke-width="2" />
                 </svg>
               </div>
               <h3>Pas de voyance floue</h3>
               <p>
-                Tarot-OS n’essaie pas de t’hypnotiser avec du mystique générique.
-                <br>Il produit une lecture positionnelle, claire, structurée et lisible.
+                Tarot-OS n’essaie pas de t’hypnotiser avec du mystique
+                générique.
+                <br />Il produit une lecture positionnelle, claire, structurée
+                et lisible.
               </p>
             </article>
 
             <article class="feature-card reveal">
               <div class="feature-icon">
                 <svg viewBox="0 0 64 64" width="24" height="24" fill="none">
-                  <rect x="14" y="10" width="36" height="44" rx="6" stroke="currentColor" stroke-width="2"/>
-                  <path d="M20 20h24M20 30h24M20 40h16" stroke="currentColor" stroke-width="2"/>
+                  <rect
+                    x="14"
+                    y="10"
+                    width="36"
+                    height="44"
+                    rx="6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M20 20h24M20 30h24M20 40h16"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
                 </svg>
               </div>
               <h3>Protocole stable</h3>
               <p>
                 Chaque tirage suit un cadre défini.
-                <br>Ce qui aide, ce qui bloque, l’évolution, la réponse, puis les nuances complémentaires.
+                <br />Ce qui aide, ce qui bloque, l’évolution, la réponse, puis
+                les nuances complémentaires.
               </p>
             </article>
 
             <article class="feature-card reveal">
               <div class="feature-icon">
                 <svg viewBox="0 0 64 64" width="24" height="24" fill="none">
-                  <path d="M10 42c10-6 12-20 26-26 8-4 16-4 18-4" stroke="currentColor" stroke-width="2"/>
-                  <circle cx="14" cy="44" r="3" fill="currentColor" stroke="none"/>
-                  <circle cx="36" cy="24" r="3" fill="currentColor" stroke="none"/>
-                  <circle cx="56" cy="12" r="3" fill="currentColor" stroke="none"/>
+                  <path
+                    d="M10 42c10-6 12-20 26-26 8-4 16-4 18-4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <circle
+                    cx="14"
+                    cy="44"
+                    r="3"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                  <circle
+                    cx="36"
+                    cy="24"
+                    r="3"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                  <circle
+                    cx="56"
+                    cy="12"
+                    r="3"
+                    fill="currentColor"
+                    stroke="none"
+                  />
                 </svg>
               </div>
               <h3>Hunter compatibility</h3>
               <p>
-                Le système est pensé comme une extension de Hunter OS, sombre, lisible, modulaire et prêt à s’intégrer à un flux réel.
+                Le système est pensé comme une extension de Hunter OS, sombre,
+                lisible, modulaire et prêt à s’intégrer à un flux réel.
               </p>
             </article>
           </div>
@@ -1120,8 +1397,9 @@
           <div class="section-head reveal">
             <h2>Le protocole</h2>
             <p>
-              "Une interface simple ne vaut rien sans structure derrière. 
-              <br>Tarot-OS repose sur un protocole clair, reproductible et facile à interpréter"
+              "Une interface simple ne vaut rien sans structure derrière.
+              <br />Tarot-OS repose sur un protocole clair, reproductible et
+              facile à interpréter"
             </p>
           </div>
 
@@ -1131,26 +1409,51 @@
                 <span class="terminal-dot"></span>
                 <span class="terminal-dot"></span>
                 <span class="terminal-dot"></span>
-                <span class="terminal-title">$ hunter --tarot_protocol</span>
+                <span class="terminal-title"
+                  >$ node hunter --tarot_protocol</span
+                >
               </div>
               <div class="terminal-body">
-                <div><span class="prompt">[INIT]</span> Tarot-OS / protocole de lecture</div>
-                <div class="muted">Le tirage n'est pas une prédiction magique.</div>
+                <div>
+                  <span class="prompt">[INIT]</span> Tarot-OS / protocole de
+                  lecture
+                </div>
+                <div class="muted">
+                  Le tirage n'est pas une prédiction magique.
+                </div>
                 <br />
-                <div><span class="cyan">Carte 1</span> → ce qui aide</div>
-                <div><span class="cyan">Carte 2</span> → ce qui bloque</div>
-                <div><span class="cyan">Carte 3</span> → évolution probable</div>
-                <div><span class="cyan">Carte 4</span> → réponse principale</div>
-                <div><span class="cyan">Carte 5</span> → influence émotionnelle</div>
-                <div><span class="cyan">Carte 6</span> → mouvement / transition</div>
-                <div><span class="cyan">Carte 7</span> → vérité structurelle</div>
+                <div>
+                  <span class="cyan">[SCAN]</span> 7 cartes sélectionnées
+                </div>
+                <div><span class="cyan">[MAP]</span> positions attribuées</div>
+                <div>
+                  <span class="cyan">[READ]</span> points d’appui détectés
+                </div>
+                <div>
+                  <span class="cyan">[READ]</span> tensions et blocages isolés
+                </div>
+                <div>
+                  <span class="cyan">[FLOW]</span> dynamique d’évolution
+                  extraite
+                </div>
+                <div>
+                  <span class="cyan">[CORE]</span> réponse centrale consolidée
+                </div>
                 <br />
-                <div><span class="violet">Cœur</span> → émotions / motivation / liens</div>
-                <div><span class="violet">Carreau</span> → communication / démarches / projets</div>
-                <div><span class="violet">Trèfle</span> → travail / argent / concret</div>
-                <div><span class="violet">Pique</span> → tension / vérité / coupure</div>
+                <div>
+                  <span class="violet">[LAYER]</span> lecture émotionnelle
+                </div>
+                <div><span class="violet">[LAYER]</span> lecture concrète</div>
+                <div>
+                  <span class="violet">[LAYER]</span> lecture relationnelle
+                </div>
+                <div>
+                  <span class="violet">[LAYER]</span> lecture structurelle
+                </div>
                 <br />
-                <div class="ok">[STATUS] lecture exploitable</div>
+                <div class="ok">
+                  [STATUS] synthèse prête · lecture exploitable
+                </div>
               </div>
             </div>
 
@@ -1160,9 +1463,10 @@
                 <div>
                   <h4>Tu poses une vraie question</h4>
                   <p>
-                    Pas “que va-t-il m’arriver ?”. 
-                    <br>Une vraie question concrète, située, exploitable. 
-                    <br>Le système fonctionne mieux avec une demande claire et détaillé.
+                    Pas “que va-t-il m’arriver ?”.
+                    <br />Une vraie question concrète, située, exploitable.
+                    <br />Le système fonctionne mieux avec une demande claire et
+                    détaillé.
                   </p>
                 </div>
               </article>
@@ -1183,8 +1487,9 @@
                 <div>
                   <h4>Le système structure l’analyse</h4>
                   <p>
-                    Les cartes ne sont pas lâchées dans le vide. 
-                    <br>Elles sont lues dans un cadre stable pour produire une synthèse utile.
+                    Les cartes ne sont pas lâchées dans le vide.
+                    <br />Elles sont lues dans un cadre stable pour produire une
+                    synthèse utile.
                   </p>
                 </div>
               </article>
@@ -1194,8 +1499,9 @@
                 <div>
                   <h4>Tu récupères une lecture claire</h4>
                   <p>
-                    Le but n’est pas de te noyer dans des symboles. 
-                    <br>Le but est de clarifier une situation et de rendre la tension lisible.
+                    Le but n’est pas de te noyer dans des symboles.
+                    <br />Le but est de clarifier une situation et de rendre la
+                    tension lisible.
                   </p>
                 </div>
               </article>
@@ -1209,8 +1515,9 @@
           <div class="section-head reveal">
             <h2>Comment ça marche</h2>
             <p>
-              "Trois étapes. Pas plus. Même les humains fatigués par les interfaces
-              surchargées devraient survivre au parcours. En principe"
+              "Trois étapes. Pas plus. Même les humains fatigués par les
+              interfaces surchargées devraient survivre au parcours. En
+              principe"
             </p>
           </div>
 
@@ -1219,8 +1526,9 @@
               <div class="step-num">01</div>
               <h3>Choisis 7 cartes</h3>
               <p>
-                Le deck contient 32 cartes. 
-                <br>Tu sélectionnes exactement 7 cartes, dans l’ordre qui formera l’architecture du tirage.
+                Le deck contient 32 cartes.
+                <br />Tu sélectionnes exactement 7 cartes, dans l’ordre qui
+                formera l’architecture du tirage.
               </p>
             </article>
 
@@ -1228,8 +1536,9 @@
               <div class="step-num">02</div>
               <h3>Renseigne ta question</h3>
               <p>
-                Tu poses une question claire et situable. 
-                <br>Le système enregistre le tirage, la question et les données utiles à la lecture.
+                Tu poses une question claire et situable.
+                <br />Le système enregistre le tirage, la question et les
+                données utiles à la lecture.
               </p>
             </article>
 
@@ -1237,8 +1546,9 @@
               <div class="step-num">03</div>
               <h3>Lance la lecture</h3>
               <p>
-                Tarot-OS transmet le tirage dans un cadre lisible. 
-                <br>Lecture structurée, protocole copiable, usage humain ou IA.
+                Tarot-OS transmet le tirage dans un cadre lisible.
+                <br />Lecture structurée, protocole copiable, usage humain ou
+                IA.
               </p>
             </article>
           </div>
@@ -1251,9 +1561,9 @@
             <h2>Interface du système</h2>
             <p>
               "Une grille sobre, un vocabulaire terminal, des cartes masquées
-              publiquement et un pipeline propre. 
-              <br>Tu n’es pas sur un site de voyance violet des années 2007. 
-              <br>Et c’est tant mieux"
+              publiquement et un pipeline propre.
+              <br />Tu n’es pas sur un site de voyance violet des années 2007.
+              <br />Et c’est tant mieux"
             </p>
           </div>
 
@@ -1263,11 +1573,20 @@
               <div class="fake-ui">
                 <div class="fake-card">
                   <svg class="moon-icon" viewBox="0 0 64 64" fill="none">
-                    <path class="crescent-base" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
-                    <path class="crescent-sheen" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+                    <path
+                      class="crescent-base"
+                      d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                    />
+                    <path
+                      class="crescent-sheen"
+                      d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                    />
                     <g class="orbit">
                       <g transform="translate(52 16)">
-                        <path class="star s1" d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"/>
+                        <path
+                          class="star s1"
+                          d="M0,-6 L1.76,-1.9 L6,-1.8 L2.6,0.8 L3.8,5.6 L0,3 L-3.8,5.6 L-2.6,0.8 L-6,-1.8 L-1.76,-1.9 Z"
+                        />
                       </g>
                     </g>
                   </svg>
@@ -1275,11 +1594,20 @@
                 </div>
                 <div class="fake-card">
                   <svg class="moon-icon" viewBox="0 0 64 64" fill="none">
-                    <path class="crescent-base" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
-                    <path class="crescent-sheen" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+                    <path
+                      class="crescent-base"
+                      d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                    />
+                    <path
+                      class="crescent-sheen"
+                      d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                    />
                     <g class="orbit">
                       <g transform="translate(16 18)">
-                        <path class="star s2" d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"/>
+                        <path
+                          class="star s2"
+                          d="M0,-5.2 L1.52,-1.7 L5.2,-1.5 L2.2,0.7 L3.2,4.8 L0,2.6 L-3.2,4.8 L-2.2,0.7 L-5.2,-1.5 L-1.52,-1.7 Z"
+                        />
                       </g>
                     </g>
                   </svg>
@@ -1287,11 +1615,20 @@
                 </div>
                 <div class="fake-card">
                   <svg class="moon-icon" viewBox="0 0 64 64" fill="none">
-                    <path class="crescent-base" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
-                    <path class="crescent-sheen" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+                    <path
+                      class="crescent-base"
+                      d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                    />
+                    <path
+                      class="crescent-sheen"
+                      d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                    />
                     <g class="orbit">
                       <g transform="translate(50 48)">
-                        <path class="star s3" d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"/>
+                        <path
+                          class="star s3"
+                          d="M0,-4.6 L1.35,-1.5 L4.6,-1.4 L1.94,0.6 L2.7,4.2 L0,2.2 L-2.7,4.2 L-1.94,0.6 L-4.6,-1.4 L-1.35,-1.5 Z"
+                        />
                       </g>
                     </g>
                   </svg>
@@ -1299,11 +1636,20 @@
                 </div>
                 <div class="fake-card">
                   <svg class="moon-icon" viewBox="0 0 64 64" fill="none">
-                    <path class="crescent-base" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
-                    <path class="crescent-sheen" d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"/>
+                    <path
+                      class="crescent-base"
+                      d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                    />
+                    <path
+                      class="crescent-sheen"
+                      d="M40 8a22 22 0 1 0 0 48 22 22 0 0 1-8-48z"
+                    />
                     <g class="orbit">
                       <g transform="translate(20 50)">
-                        <path class="star s4" d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"/>
+                        <path
+                          class="star s4"
+                          d="M0,-4.2 L1.22,-1.3 L4.2,-1.2 L1.8,0.6 L2.5,3.8 L0,2 L-2.5,3.8 L-1.8,0.6 L-4.2,-1.2 L-1.22,-1.3 Z"
+                        />
                       </g>
                     </g>
                   </svg>
@@ -1316,8 +1662,8 @@
               <h3>Position du système</h3>
               <blockquote>
                 "Tarot-OS ne remplace ni ton jugement, ni un conseil
-                professionnel, ni la réalité. 
-                <br>Il t’aide à lire une situation, pas à fuir dedans"
+                professionnel, ni la réalité.
+                <br />Il t’aide à lire une situation, pas à fuir dedans"
               </blockquote>
               <div class="quote-meta">
                 Lecture symbolique structurée • Hunter OS • protocole moderne
@@ -1332,8 +1678,8 @@
           <div class="section-head reveal">
             <h2>FAQ</h2>
             <p>
-              "Quelques réponses utiles avant que quelqu’un ne demande si les cartes
-              prédisent l’avenir avec une précision notariale"
+              "Quelques réponses utiles avant que quelqu’un ne demande si les
+              cartes prédisent l’avenir avec une précision notariale"
             </p>
           </div>
 
@@ -1346,9 +1692,10 @@
               <div class="faq-a">
                 <div class="faq-a-inner">
                   Non. Tarot-OS propose une lecture symbolique structurée d’une
-                  situation. 
-                  <br> Il sert à clarifier une dynamique, pas à annoncer un
-                  futur absolu.
+                  situation.
+                  <br />
+                  Il sert à clarifier une dynamique, pas à annoncer un futur
+                  absolu.
                 </div>
               </div>
             </div>
@@ -1362,8 +1709,9 @@
                 <div class="faq-a-inner">
                   Parce que le système repose sur 7 positions fonctionnelles :
                   aide, blocage, évolution, réponse et trois nuances
-                  complémentaires. 
-                  <br> C’est lisible, stable et exploitable.
+                  complémentaires.
+                  <br />
+                  C’est lisible, stable et exploitable.
                 </div>
               </div>
             </div>
@@ -1375,10 +1723,10 @@
               </button>
               <div class="faq-a">
                 <div class="faq-a-inner">
-                  Oui. 
-                  <br>Le système peut produire une fiche claire, utilisable dans
-                  une IA avec un prompt structuré. 
-                  <br>C’est même l’un des usages les plus intéressants du projet.
+                  Oui.
+                  <br />Le système peut produire une fiche claire, utilisable
+                  dans une IA avec un prompt structuré. <br />C’est même l’un
+                  des usages les plus intéressants du projet.
                 </div>
               </div>
             </div>
@@ -1390,9 +1738,10 @@
               </button>
               <div class="faq-a">
                 <div class="faq-a-inner">
-                  Non. 
-                  <br>Tarot-OS est pensé pour être lisible sans bagage ésotérique.
-                  <br>Le protocole structure la lecture à ta place.
+                  Non.
+                  <br />Tarot-OS est pensé pour être lisible sans bagage
+                  ésotérique. <br />Le protocole structure la lecture à ta
+                  place.
                 </div>
               </div>
             </div>
@@ -1405,18 +1754,16 @@
           <div class="cta-card reveal">
             <h2>Accéder à une consultation</h2>
             <p>
-              Pose une question. Sélectionne 7 cartes. 
-              <br>Lance une lecture propre, structurée et exploitable. 
-              <br>Le reste, c’est du bruit.
+              Pose une question. Sélectionne 7 cartes.
+              <br />Lance une lecture propre, structurée et exploitable.
+              <br />Le reste, c’est du bruit.
             </p>
 
             <div class="cta-actions">
               <button class="btn btn-primary" id="bottomLaunchBtn">
                 Commencer un tirage
               </button>
-              <a href="#concept" class="btn btn-ghost">
-                Relire le concept
-              </a>
+              <a href="#concept" class="btn btn-ghost"> Relire le concept </a>
             </div>
           </div>
         </div>
@@ -1431,7 +1778,8 @@
     </footer>
 
     <script>
-      const TAROT_INTERFACE_URL = "https://calendar.app.google/Hp8NFaNmT6ExzRoRA";
+      const TAROT_INTERFACE_URL =
+        "https://calendar.app.google/Hp8NFaNmT6ExzRoRA";
 
       const launchButtons = [
         document.getElementById("topLaunchBtn"),
@@ -1446,6 +1794,35 @@
         });
       });
 
+      const navToggle = document.getElementById("nav");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (navToggle && mobileMenu) {
+        navToggle.addEventListener("click", () => {
+          const isOpen = mobileMenu.classList.toggle("open");
+          navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          navToggle.textContent = isOpen ? "✕" : "☰";
+        });
+
+        mobileMenu.querySelectorAll("a, button").forEach((el) => {
+          el.addEventListener("click", () => {
+            if (window.innerWidth <= 760) {
+              mobileMenu.classList.remove("open");
+              navToggle.setAttribute("aria-expanded", "false");
+              navToggle.textContent = "☰";
+            }
+          });
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 760) {
+            mobileMenu.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.textContent = "☰";
+          }
+        });
+      }
+
       const revealEls = document.querySelectorAll(".reveal");
       const io = new IntersectionObserver(
         (entries) => {
@@ -1456,7 +1833,7 @@
             }
           });
         },
-        { threshold: 0.12 }
+        { threshold: 0.12 },
       );
 
       revealEls.forEach((el) => io.observe(el));
@@ -1468,7 +1845,8 @@
         const icon = btn.querySelector("span:last-child");
 
         btn.addEventListener("click", () => {
-          const isOpen = panel.style.maxHeight && panel.style.maxHeight !== "0px";
+          const isOpen =
+            panel.style.maxHeight && panel.style.maxHeight !== "0px";
 
           faqItems.forEach((other) => {
             const otherPanel = other.querySelector(".faq-a");
